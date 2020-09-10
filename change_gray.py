@@ -20,3 +20,5 @@ for name in os.listdir(folder_name):
     # cv2.waitKey(0)
 
     cv2.imwrite(os.path.join('/home/sean/Documents/yolov3_train/data/test/gray_608/' + name), gray)
+
+    #test
