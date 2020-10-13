@@ -6,6 +6,7 @@ cut several videos into frames within a floder
 import cv2
 import os
 pathin = 'video'
+pathout = '/home/hkuit164/Documents/fish/'
 # count=0
 for video in os.listdir(pathin):
     video_path = os.path.join(pathin, video)
@@ -17,7 +18,7 @@ for video in os.listdir(pathin):
         ret, frame = cap.read()
         if ret:
             if cnt % step == 0:
-                cv2.imwrite('/home/hkuit164/Documents/fish/' +video.split('.')[0]+'__'+ str(cnt) + ".jpg", frame)
+                cv2.imwrite(pathout +video.split('.')[0]+'__'+ str(cnt) + ".jpg", frame)
                 # cv2.imwrite("{}.jpg".format(cnt), frame)
             # count += 1
             cnt += 1
