@@ -13,7 +13,8 @@
 import sys,os
 # os.removedirs('0507_mul/gray/1')
 # print(sys.executable)
-def A(b):
-    b+=1
-    return b
-A(1)
+#
+import os
+path = '/media/hkuit164/WD20EJRX/drown+stand'
+for name in os.listdir(path):
+    print('file ',path+'/'+name)

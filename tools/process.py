@@ -5,7 +5,7 @@ import glob, os
 
 # current_dir = os.path.dirname(os.path.abspath(__file__))
 
-current_dir= '/media/hkuit164/WD20EJRX/yolov3-channel-and-layer-pruning/data/fish/JPEGImages'
+current_dir= '/media/hkuit164/My Passport/Fish_documents/JPEGImages'
 # print(current_dir)
 # percentage_test = 10
 percentage_test = 10

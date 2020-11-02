@@ -3,9 +3,9 @@ rename the txt and pics in the same time
 '''
 import os
 
-img_floder = '/media/hkuit164/WD20EJRX/ceiling_detection/0619_ceiling_det/0619_test_20_rectified'
-txt_folder = '/media/hkuit164/WD20EJRX/ceiling_detection/0619_ceiling_det/0619_test_20_rectified_label'
-date_name = '0619_'
+img_floder = '/media/hkuit164/Ubuntu 16.0/Fish_documents/JPEGImages'
+txt_folder = '/media/hkuit164/Ubuntu 16.0/Fish_documents/txt'
+date_name = '0911_fish'
 img_list = os.listdir(img_floder)
 # txt_list = os.listdir(txt_folder)
 count = 1

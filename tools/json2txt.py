@@ -21,11 +21,11 @@ def convert(size, box):
     return (x, y, w, h)
 
 
-json_file = '/media/hkuit164/Ubuntu 16.0/instances_train2017.json'  # # Object Instance 类型的标注
+json_file = '/media/hkuit164/MB155_2/COCO/annotations/instances_train2017.json'  # # Object Instance 类型的标注
 
 data = json.load(open(json_file, 'r'))
 
-ana_txt_save_path = "./train/"  # 保存的路径
+ana_txt_save_path = "../COCO/train/"  # 保存的路径
 if not os.path.exists(ana_txt_save_path):
     os.makedirs(ana_txt_save_path)
 
