@@ -22,6 +22,7 @@ class Yolo2Coco:
         json.dump(instance, open(save_pth, 'w', encoding='utf-8'))
 
     def to_coco(self, label_ls, label_pth, imgs_pth):
+        tmp = imgs_pth
         self._init_categories()
         for label in tqdm.tqdm(label_ls):
             img_pth = os.path.join(imgs_pth, label.replace('.txt', '.jpg'))
@@ -39,7 +40,10 @@ class Yolo2Coco:
                 annotation = self._annotations(cl, xc, yc, w, h)
                 self.annotations.append(annotation)
                 self.ann_id += 1
+            os.rename(img_pth, os.path.join(tmp, str(self.img_id))+'.jpg')
+            os.rename(os.path.join(label_pth,label), os.path.join(label_pth, str(self.img_id))+'.txt')
             self.img_id += 1
+
         instance = {}
         instance['info'] = 'spytensor created'
         instance['license'] = ['license']
@@ -120,34 +124,34 @@ class Yolo2Coco:
 
 
 if __name__ == "__main__":
-    label_pth = "/media/hkuit164/WD20EJRX/yolov3-channel-and-layer-pruning/data/rgb/txt"
-    imgs_pth = "/media/hkuit164/WD20EJRX/yolov3-channel-and-layer-pruning/data/rgb/JPEGImages"
+    label_pth = "/media/hkuit164/WD20EJRX/yolov3-channel-and-layer-pruning/data/rgb_test/txt"
+    imgs_pth = "/media/hkuit164/WD20EJRX/yolov3-channel-and-layer-pruning/data/rgb_test/JPEGImages"
     saved_coco_pth = "/media/hkuit164/WD20EJRX/pytorch-YOLOv4/data/"
     # make dir for coco
-    if not os.path.exists("%sswim_coco/annotations" % saved_coco_pth):
-        os.makedirs("%sswim_coco/annotations/" % saved_coco_pth)
-    if not os.path.exists("%sswim_coco/images/train2017/" % saved_coco_pth):
-        os.makedirs("%sswim_coco/images/train2017" % saved_coco_pth)
-    if not os.path.exists("%sswim_coco/images/val2017/" % saved_coco_pth):
-        os.makedirs("%sswim_coco/images/val2017" % saved_coco_pth)
+    if not os.path.exists("%stest/annotations" % saved_coco_pth):
+        os.makedirs("%stest/annotations/" % saved_coco_pth)
+    if not os.path.exists("%stest/images/train2017/" % saved_coco_pth):
+        os.makedirs("%stest/images/train2017" % saved_coco_pth)
+    if not os.path.exists("%stest/images/val2017/" % saved_coco_pth):
+        os.makedirs("%stest/images/val2017" % saved_coco_pth)
 
     # get all the labels
     label_ls = os.listdir(label_pth)
     # imgs_ls = glob.glob(imgs_pth + '/*.jpg')
 
     # split train and val
-    train_ls, valid_ls = train_test_split(label_ls, test_size=0.1)
+    train_ls, valid_ls = train_test_split(label_ls, test_size=1)
 
     # convert2coco for train set
     y2c_train = Yolo2Coco()
     train_instance = y2c_train.to_coco(train_ls, label_pth, imgs_pth)
-    y2c_train.save_coco_json(train_instance, '%sswim_coco/annotations/instances_train2017.json' % saved_coco_pth)
-    for file in train_ls:
-        shutil.copy(os.path.join(imgs_pth, file.replace("txt", "jpg")),
-                    "%sswim_coco/images/train2017/" % saved_coco_pth)
-    for file in valid_ls:
-        shutil.copy(os.path.join(imgs_pth, file.replace("txt", "jpg")), "%sswim_coco/images/val2017/" % saved_coco_pth)
+    y2c_train.save_coco_json(train_instance, '%stest/annotations/instances_train2017.json' % saved_coco_pth)
+    # for file in train_ls:
+    #     shutil.copy(os.path.join(imgs_pth, file.replace("txt", "jpg")),
+    #                 "%stest/images/train2017/" % saved_coco_pth)
+    # for file in valid_ls:
+    #     shutil.copy(os.path.join(imgs_pth, file.replace("txt", "jpg")), "%stest/images/val2017/" % saved_coco_pth)
 
     y2c_val = Yolo2Coco()
     val_instance = y2c_val.to_coco(valid_ls, label_pth, imgs_pth)
-    y2c_val.save_coco_json(val_instance, '%sswim_coco/annotations/instances_val2017.json' % saved_coco_pth)
+    y2c_val.save_coco_json(val_instance, '%stest/annotations/instances_val2017.json' % saved_coco_pth)

@@ -2,8 +2,8 @@
 import os
 
 
-img_path = '/media/hkuit164/WD20EJRX/yolov3-channel-and-layer-pruning/data/black/JPEGImages'
-anno_path = '/media/hkuit164/WD20EJRX/yolov3-channel-and-layer-pruning/data/black/txt'
+img_path = '/media/hkuit164/WD20EJRX/basket/JPEGImages'
+anno_path = '/media/hkuit164/WD20EJRX/basket/txt'
 
 def contrastDir(img_path,anno_path):
     jpg_list = []
@@ -18,13 +18,13 @@ def contrastDir(img_path,anno_path):
                 xml_list.append(os.path.splitext(file)[0])
 
     diff = set(jpg_list).difference(set(xml_list))
-    # diff2 = set(xml_list).difference(set(jpg_list))
-    print(diff)
-    # for name in diff2:
+    diff2 = set(xml_list).difference(set(jpg_list))
+    print(len(diff))
+    for name in diff:
         # print("No corresponding XML file", name + ".jpg")
         #删除没有的对应xml的图像
         # os.remove(anno_path+'/'+ name+'.txt')
-        # os.remove(img_path + '/' + name + '.jpg')
+        os.remove(img_path + '/' + name + '.jpg')
 
 if __name__ == '__main__':
 

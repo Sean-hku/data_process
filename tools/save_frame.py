@@ -3,36 +3,14 @@
 cut several videos into frames within a floder
 '''
 
-# import cv2
-# import os
-# pathin = '/media/hkuit164/WD20EJRX/fish'
-# pathout = '/media/hkuit164/WD20EJRX/fish_pic/'
-# # count=0
-# for video in os.listdir(pathin):
-#     video_path = os.path.join(pathin, video)
-#     print(video_path)
-#     step = 20
-#     cnt = 0
-#     cap = cv2.VideoCapture(video_path)
-#     while True:
-#         ret, frame = cap.read()
-#         if ret:
-#             if cnt % step == 0:
-#                 cv2.imwrite(pathout +video.split('.')[0]+'__'+ str(cnt) + ".jpg", frame)
-#             cnt += 1
-#         else:
-#             break
-
-'test merge'
-
 import cv2
 import os
-pathin = '/media/hkuit164/TOSHIBA/reha_video/Hemiplegic shoulder assisted flexion'
-pathout = '/media/hkuit164/TOSHIBA/reha_video/image/'
+pathin = '/home/hkuit164/Downloads/basketball'
+pathout = '/home/hkuit164/Downloads/tmp/'
 # count=0
 for video in os.listdir(pathin):
     video_path = os.path.join(pathin, video)
-    # video_path = '46.mp4'
+    print(video_path)
     step = 1
     cnt = 0
     cap = cv2.VideoCapture(video_path)
@@ -40,16 +18,39 @@ for video in os.listdir(pathin):
         ret, frame = cap.read()
         if ret:
             if cnt % step == 0:
-                frame = cv2.resize(frame,(416,416))
                 cv2.imwrite(pathout +video.split('.')[0]+'__'+ str(cnt) + ".jpg", frame)
-                # cv2.imwrite("{}.jpg".format(cnt), frame)
-            # count += 1
             cnt += 1
         else:
             break
-<<<<<<< HEAD
+
+'test merge'
+
+import cv2
+import os
+# pathin = '/media/hkuit164/TOSHIBA/reha_video/Hemiplegic shoulder assisted flexion'
+# pathout = '/media/hkuit164/TOSHIBA/reha_video/image/'
+# # count=0
+# for video in os.listdir(pathin):
+#     video_path = os.path.join(pathin, video)
+#     # video_path = '46.mp4'
+#     step = 1
+#     cnt = 0
+#     cap = cv2.VideoCapture(video_path)
+#     while True:
+#         ret, frame = cap.read()
+#         if ret:
+#             if cnt % step == 0:
+#                 frame = cv2.resize(frame,(416,416))
+#                 cv2.imwrite(pathout +video.split('.')[0]+'__'+ str(cnt) + ".jpg", frame)
+#                 # cv2.imwrite("{}.jpg".format(cnt), frame)
+#             # count += 1
+#             cnt += 1
+#         else:
+#             break
+
 '''
 cut several videos into frames in several floders
+
 import cv2
 import os
 pathin = '/media/hkuit164/WD20EJRX/5Groups/'
@@ -75,8 +76,9 @@ for video in os.listdir(pathin):
 
             else:
                 break
+
 '''
-=======
+
 
 # cut several videos into frames in several floders
 # import cv2
@@ -103,4 +105,4 @@ for video in os.listdir(pathin):
 #                 cnt += 1
 #             else:
 #                 break
->>>>>>> tt
+
